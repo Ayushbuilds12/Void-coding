@@ -1,6 +1,7 @@
 import './globals.css'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import SupabaseInit from './components/SupabaseInit'
 
 export const metadata = {
   title: 'Void Coding',
@@ -11,6 +12,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="bg-white text-gray-900 antialiased">
+        <SupabaseInit />
         <header className="border-b border-gray-100">
           <div className="container mx-auto px-6 py-4 flex items-center justify-between">
             <Link href="/" className="text-xl font-bold">Void</Link>
