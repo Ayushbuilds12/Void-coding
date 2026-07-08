@@ -1,44 +1,42 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { signInWithEmail, initSupabaseAuthSync } from '../../lib/supabase'
+import { signUpWithEmail, initSupabaseAuthSync } from '../../lib/supabase'
 
-export default function LoginPage() {
+export default function SignupPage() {
   initSupabaseAuthSync()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    // If user is already authenticated, they will have the cookie and middleware should redirect
-  }, [])
+  const [message, setMessage] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
+    setMessage(null)
     setLoading(true)
-    const { data, error } = await signInWithEmail(email, password)
+    const { data, error } = await signUpWithEmail(email, password)
     setLoading(false)
     if (error) {
       setError(error.message)
       return
     }
-
-    // redirect to dashboard if successful
-    if (data?.session) {
-      window.location.href = '/dashboard'
+    if (data?.user) {
+      setMessage('Account created. A confirmation email may have been sent. Redirecting to dashboard...')
+      // wait briefly and redirect
+      setTimeout(() => { window.location.href = '/dashboard' }, 1200)
     } else {
-      setError('Login succeeded but no session returned.')
+      setMessage('Check your email for a confirmation link.')
     }
   }
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md bg-white rounded-xl shadow p-8">
-        <h1 className="text-2xl font-semibold">Sign in to Void</h1>
-        <p className="mt-2 text-sm text-gray-600">Access your projects and dashboard</p>
+        <h1 className="text-2xl font-semibold">Create an account for Void</h1>
+        <p className="mt-2 text-sm text-gray-600">Sign up with your email and password</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
@@ -61,7 +59,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-2 block w-full rounded-md border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 p-2"
-              placeholder="Enter your password"
+              placeholder="Create a password"
             />
           </div>
 
@@ -70,14 +68,15 @@ export default function LoginPage() {
             className="w-full inline-flex items-center justify-center rounded-md bg-indigo-600 text-white px-4 py-2 font-medium hover:bg-indigo-700 disabled:opacity-60"
             disabled={loading}
           >
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? 'Creating account...' : 'Create account'}
           </button>
         </form>
 
         {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+        {message && <p className="mt-4 text-sm text-green-600">{message}</p>}
 
         <p className="mt-4 text-center text-sm text-gray-500">
-          New to Void? <Link href="/signup" className="text-indigo-600 hover:underline">Create an account</Link>
+          Already have an account? <Link href="/login" className="text-indigo-600 hover:underline">Sign in</Link>
         </p>
       </div>
     </main>
