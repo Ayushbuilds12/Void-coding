@@ -18,7 +18,7 @@ export default function PricingPage() {
               <li>Basic Domains</li>
               <li>Community support</li>
             </ul>
-            <Link href="/login" className="mt-6 inline-block w-full text-center bg-gray-100 py-2 rounded-md font-medium">Get started</Link>
+            <Link href="/signup" className="mt-6 inline-block w-full text-center bg-gray-100 py-2 rounded-md font-medium hover:bg-gray-200">Get started</Link>
           </div>
 
           <div className="rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 shadow-lg">
@@ -29,7 +29,7 @@ export default function PricingPage() {
               <li>Custom Domains</li>
               <li>Priority support</li>
             </ul>
-            <Link href="/login" className="mt-6 inline-block w-full text-center bg-white text-indigo-700 py-2 rounded-md font-medium">Start Pro</Link>
+            <Link href="/signup" className="mt-6 inline-block w-full text-center bg-white text-indigo-700 py-2 rounded-md font-medium hover:bg-gray-100">Start Pro</Link>
           </div>
 
           <div className="rounded-xl bg-white p-6 shadow">
@@ -40,7 +40,7 @@ export default function PricingPage() {
               <li>SSO & advanced security</li>
               <li>Dedicated support</li>
             </ul>
-            <Link href="/contact" className="mt-6 inline-block w-full text-center bg-gray-100 py-2 rounded-md font-medium">Contact sales</Link>
+            <a href="mailto:sales@void.dev" className="mt-6 inline-block w-full text-center bg-gray-100 py-2 rounded-md font-medium hover:bg-gray-200">Contact sales</a>
           </div>
         </div>
       </div>
