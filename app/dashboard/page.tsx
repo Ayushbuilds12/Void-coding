@@ -1,7 +1,8 @@
-import { createServerSupabaseClient } from '../../lib/supabaseServer'
+'use client'
 
-export default async function DashboardPage() {
-  // Server component renders a client-side Projects manager
+import ProjectsClient from '../components/ProjectsClient'
+
+export default function DashboardPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -15,14 +16,9 @@ export default async function DashboardPage() {
         </section>
 
         <section>
-          {/* ProjectsClient handles fetch/create/delete without full page reload */}
-          {/* Client component imported dynamically via client file */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div id="projects-client" />
+          <ProjectsClient />
         </section>
       </div>
-
-      <script dangerouslySetInnerHTML={{ __html: `import('/_next/static/chunks/main.js')` }} />
     </div>
   )
 }
