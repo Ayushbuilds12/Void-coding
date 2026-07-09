@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex flex-col">
@@ -6,8 +8,8 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight text-gray-900">Build real-world websites and projects</h1>
           <p className="mt-6 text-lg text-gray-600">Void Coding helps students and intermediate developers learn practical web development with hands-on tutorials and projects.</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href="#" className="inline-flex items-center justify-center rounded-md bg-black text-white px-5 py-3 font-medium hover:opacity-95">Get started</a>
-            <a href="#" className="inline-flex items-center justify-center rounded-md border border-gray-200 px-5 py-3 text-gray-700 hover:bg-gray-50">Explore projects</a>
+            <Link href="/signup" className="inline-flex items-center justify-center rounded-md bg-black text-white px-5 py-3 font-medium hover:opacity-95">Get started</Link>
+            <Link href="/dashboard" className="inline-flex items-center justify-center rounded-md border border-gray-200 px-5 py-3 text-gray-700 hover:bg-gray-50">Explore projects</Link>
           </div>
         </div>
 
